@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Validar-Sávio</title>
+
+    <script>
+        function validarform() {
+        var val = document.getElementById("valido");
+        try {
+            var x = document.forms["meuForm"]["nome"].value; 
+            if (x == null || x == "") {
+                throw "O Nome deve ser preenchido!";
+        } 
+        var y = document.forms["meuForm"]["email"].value;
+        var atpos = y.indexOf("@");
+        var dotpos = y.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= y.length){
+            throw "Digite um e-mail válido!";
+        }
+        return true;
+
+    } catch (err) { 
+        val.style.color = "#FF0000"
+        val.innerHIMI = "Erro: " + err;
+        return false;
+        }//Fin catch
+    } //Fim function
+    </script>
+</head>
+
+    <body>
+
+    <form name="meuForm" action="recebe.php" 
+                        onsubmit="validarForm();" method="post"> 
+         Nome: <input type="text" name="nome"> 
+        e-mail: <input type="text" name="email"> 
+        <input type="submit" value="Enviar"> 
+    </form>
+
+<p id="valido">Preencha o formulário e clique em Enviar</p>
+    
+    </body>
+</html>
